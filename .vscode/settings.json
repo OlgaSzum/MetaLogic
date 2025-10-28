@@ -1,0 +1,5 @@
+{
+  "python.defaultInterpreterPath": "/home/wysokozaawansowany_gmail_com/work/MetaLogic/.venv/bin/python",
+  "jupyter.jupyterServerType": "local",
+  "jupyter.notebookFileRoot": "${workspaceFolder}"
+}
