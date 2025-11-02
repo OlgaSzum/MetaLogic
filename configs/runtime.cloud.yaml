@@ -1,0 +1,6 @@
+env: cloud
+data_root: /home/wysokozaawansowany_gmail_com/work/MetaLogic
+inputs_dir: inputs # na VM szybciej niż gcsfuse do edycji
+outputs_dir: outputs
+use_vision: true
+vision_key: /home/wysokozaawansowany_gmail_com/secrets/vision-key.json

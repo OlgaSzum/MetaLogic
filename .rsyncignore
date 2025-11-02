@@ -1,0 +1,10 @@
+.git
+.gitignore
+.venv
+.venv*/
+__pycache__/
+.ipynb_checkpoints/
+.vscode/
+*.pyc
+outputs/
+notebooks/weights/

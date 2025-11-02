@@ -1,5 +1,6 @@
-project_root: "/home/wysokozaawansowany_gmail_com/work/MetaLogic"
-inputs_dir: "inputs"
-outputs_dir: "outputs"
-gcs_bucket: "nonprl-ml"
-use_vision: false
+env: local
+data_root: .
+inputs_dir: inputs
+outputs_dir: outputs
+use_vision: false # włączysz na żądanie
+vision_key: "" # lokalnie puste
