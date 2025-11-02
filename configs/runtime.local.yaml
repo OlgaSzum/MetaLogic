@@ -1,0 +1,5 @@
+project_root: "/home/wysokozaawansowany_gmail_com/work/MetaLogic"
+inputs_dir: "inputs"
+outputs_dir: "outputs"
+gcs_bucket: "nonprl-ml"
+use_vision: false
