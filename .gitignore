@@ -11,3 +11,5 @@ activate.sh
 notebooks/weights/
 notebooks/yolov8n.pt
 yolov8n.pt
+yolov8n.pt
+notebooks/weights/
