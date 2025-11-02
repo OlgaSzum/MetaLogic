@@ -1,47 +1,41 @@
-.PHONY: local cloud sync-vm sync-gcs deps
+# ===== MetaLogic Makefile =====
+# Konfiguracja
+VM := wysokozaawansowany_gmail_com@34.118.117.108
+EXCL := --exclude-from='.rsyncignore'
 
-local:
-	ML_CONFIG=configs/runtime.local.yaml code .
+.PHONY: help pull backup clean sync-vm sync-vm-dry clean-vm sync-gcs
 
-cloud:
-	ssh -i ~/.ssh/google_compute_engine \
-		wysokozaawansowany_gmail_com@34.118.117.108 \
-		'cd ~/work/MetaLogic && git pull && source .venv/bin/activate && jupyter lab --no-browser'
-
-sync-vm:
-	./scripts/sync_to_vm.sh
-
-sync-gcs:
-	ssh -i ~/.ssh/google_compute_engine \
-		wysokozaawansowany_gmail_com@34.118.117.108 \
-		'cd ~/work/MetaLogic && ./scripts/sync_to_gcs.sh'
-
-deps:
-	pip install -r requirements.txt
-
-backup:
-	mkdir -p notebooks/_backup
-	cp -v notebooks/*.ipynb notebooks/_backup/ || true
-	echo "✅ Notebooki zapisane w notebooks/_backup"
-
-clean:
-	find . -type d -name "__pycache__" -exec rm -rf {} + || true
-	rm -rf outputs/* || true
-	echo "🧹 Cache i outputs wyczyszczone"
+help:
+	@echo "Targets:"
+	@echo "  pull          - git pull --ff-only"
+	@echo "  backup        - kopia *.ipynb do notebooks/_backups"
+	@echo "  clean         - usuń __pycache__/ i .ipynb_checkpoints/"
+	@echo "  sync-vm       - rsync na VM (prawdziwy transfer)"
+	@echo "  sync-vm-dry   - rsync DRY-RUN na VM (bez zmian)"
+	@echo "  clean-vm      - usuń .venv i cache na VM"
+	@echo "  sync-gcs      - wyślij outputs/ do GCS"
 
 pull:
 	git pull --ff-only
-	echo "✅ Repozytorium zaktualizowane z GitHuba"
 	git status -sb
-	
-venv-vm:
-	@export VM=wysokozaawansowany_gmail_com@34.118.117.108; \
-	ssh $$VM 'cd ~/work/MetaLogic && python3 -m venv .venv && source .venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt'
 
-jlab-vm:
-	@export VM=wysokozaawansowany_gmail_com@34.118.117.108; \
-	ssh -L 8888:localhost:8888 $$VM 'cd ~/work/MetaLogic && export ML_CONFIG=configs/runtime.cloud.yaml && source .venv/bin/activate && jupyter lab --no-browser --port=8888'
+backup:
+	mkdir -p notebooks/_backups/backup_$$(date +%F_%H%M%S)
+	cp -v notebooks/*.ipynb notebooks/_backups/backup_$$(date +%F_%H%M%S)/ 2>/dev/null || true
+
+clean:
+	find . -name "__pycache__" -type d -prune -exec rm -rf {} + ; \
+	find . -name ".ipynb_checkpoints" -type d -prune -exec rm -rf {} + ; \
+	rm -rf .mypy_cache .pytest_cache
+
+sync-vm:
+	rsync -av --delete $(EXCL) "$$HOME/MetaLogic/" "$(VM):~/work/MetaLogic/"
+
+sync-vm-dry:
+	rsync -av --delete $(EXCL) --dry-run "$$HOME/MetaLogic/" "$(VM):~/work/MetaLogic/"
+
+clean-vm:
+	ssh $(VM) 'rm -rf ~/work/MetaLogic/.venv ~/work/MetaLogic/__pycache__ ~/work/MetaLogic/.ipynb_checkpoints || true'
 
 sync-gcs:
-	@export VM=wysokozaawansowany_gmail_com@34.118.117.108; \
-	ssh $$VM 'cd ~/work/MetaLogic && ./scripts/sync_to_gcs.sh'
+	./scripts/sync_to_gcs.sh
