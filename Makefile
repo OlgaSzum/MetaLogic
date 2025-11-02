@@ -33,3 +33,15 @@ pull:
 	git pull --ff-only
 	echo "✅ Repozytorium zaktualizowane z GitHuba"
 	git status -sb
+	
+venv-vm:
+	@export VM=wysokozaawansowany_gmail_com@34.118.117.108; \
+	ssh $$VM 'cd ~/work/MetaLogic && python3 -m venv .venv && source .venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt'
+
+jlab-vm:
+	@export VM=wysokozaawansowany_gmail_com@34.118.117.108; \
+	ssh -L 8888:localhost:8888 $$VM 'cd ~/work/MetaLogic && export ML_CONFIG=configs/runtime.cloud.yaml && source .venv/bin/activate && jupyter lab --no-browser --port=8888'
+
+sync-gcs:
+	@export VM=wysokozaawansowany_gmail_com@34.118.117.108; \
+	ssh $$VM 'cd ~/work/MetaLogic && ./scripts/sync_to_gcs.sh'
