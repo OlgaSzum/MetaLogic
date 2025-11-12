@@ -1,0 +1,12 @@
+model_name: "openclip:ViT-B-32"
+precision: "fp16"
+batch_size: 64
+device: "auto"
+prompts:
+  template: "Zdjęcie z {label}."
+  labels: ["lata 1940.", "lata 1950.", "lata 1960.", "lata 1970.", "lata 1980.", "po 1990"]
+thresholds:
+  accept_top1: 0.62
+paths:
+  cache_dir: "outputs/clip_epoch/cache"
+seed: 42

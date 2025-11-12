@@ -1,0 +1,7 @@
+defaults:
+  input_dir: "data/staging"
+  n_preview: 24
+  enable_yolo: false
+  enable_ocr: true
+  epoch_mode: "zero-shot"
+  target_env: "local"

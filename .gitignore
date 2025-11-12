@@ -1,18 +1,24 @@
+# Virtual environment
 .venv/
-data/
-outputs/
 __pycache__/
 .ipynb_checkpoints/
 
-inputs/**
-outputs/**
-.DS_Store
-activate.sh
+# Local data and outputs
+data/
+outputs/
+inputs/
+exports/
+logs/
+models/
+
+# Temporary / weights
+*.pt
+*.onnx
 notebooks/weights/
 notebooks/yolov8n.pt
-yolov8n.pt
-yolov8n.pt
-notebooks/weights/
+
+# Secrets
 secrets/
-secrets/
-.venv/
+.env
+.DS_Store
+activate.sh
