@@ -1,26 +1,52 @@
-# Virtual environment
+#######################################
+# Środowiska wirtualne
+#######################################
 .venv/
-__pycache__/
-.ipynb_checkpoints/
 .venv311/
 .venv*/
 
-# Local data and outputs
+#######################################
+# Python cache
+#######################################
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+#######################################
+# Jupyter
+#######################################
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+#######################################
+# Dane lokalne (nie wersjonujemy)
+#######################################
 data/
-outputs/
 inputs/
+outputs/
 exports/
 logs/
 models/
 
-# Temporary / weights
+#######################################
+# Wagi modeli / duże pliki
+#######################################
 *.pt
 *.onnx
 notebooks/weights/
 notebooks/yolov8n.pt
 
-# Secrets
+#######################################
+# Sekrety i konfiguracje lokalne
+#######################################
 secrets/
 .env
-.DS_Store
 activate.sh
+
+#######################################
+# System / IDE
+#######################################
+.DS_Store
+.idea/
+*.code-workspace

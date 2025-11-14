@@ -1,26 +1,41 @@
-# MetaLogic
-Asystent metadanych: AI + reguły dla archiwów (PRL / non-PRL / inne).
+# Metadata Assistant – PRL / Brama Grodzka
 
-## Automatyzacja (Makefile)
+Asystent wspiera uzupełnianie metadanych w archiwum dLibra Bramy Grodzkiej,
+łącząc klasyfikację obrazów (PRL / non-PRL), wykrywanie obiektów, OCR
+i sugestie opisów zgodne z zasadami GLAM (Dublin Core, OAI-PMH, AI4Culture).
 
-| Komenda         | Działanie                                         |
-| --------------- | ------------------------------------------------- |
-| `make local`    | Uruchamia projekt lokalnie w VS Code              |
-| `make sync-vm`  | Synchronizuje pliki z Maca do instancji GC        |
-| `make cloud`    | Uruchamia Jupyter na instancji                    |
-| `make backup`   | Kopiuje lokalne notebooki do `notebooks/_backup/` |
-| `make clean`    | Czyści cache i katalog `outputs`                  |
-| `make sync-gcs` | Wysyła wyniki z instancji do Cloud Storage        |
-| `make deps`     | Instaluje zależności z `requirements.txt`         |
+## Struktura projektu
 
-## Kolejność pracy z notatnikami
+metalogic/        – kod źródłowy pipeline’u
+configs/          – konfiguracje YAML
+schemas/          – mapowanie pól (Dublin Core, eksport dLibra)
+notebooks/        – analizy i pipeline ML
+data/             – struktura katalogów na dane (uczestniczący w .gitignore)
+outputs/          – wyniki (nie wersjonowane)
+models/           – wagi modeli (nie wersjonowane)
+logs/             – logi i audyt decyzji AI
+exports/          – eksporty CSV dla dLibra
 
-1. **01_vision_paddle_pipeline.ipynb**  
-   OCR, grupowanie tekstów, kafelkowanie i analiza wizualna zdjęć.  
-   Zapisuje wyniki (`_ocr.json`, `_full.json`) w katalogu `outputs/ocr/`.
+## Modele
 
-2. **02_objects.ipynb**  
-   Wykrywanie obiektów i logotypów (Google Vision OBJECT_LOCALIZATION + LOGO_DETECTION).  
-   Wykorzystuje obrazy z katalogu `inputs/` oraz zapisuje wizualizacje i dane do `outputs/ocr/`.
+- CLIP (FP16) – klasyfikacja obrazów i embeddingi
+- YOLOv8n – detekcja obiektów
+- Google Vision OCR – opcjonalnie
 
-💡 *Uruchamiaj notatniki w tej kolejności — drugi notebook korzysta z danych przygotowanych przez pierwszy.*
+## Wymagania
+
+Python 3.13  
+Pillow 10.4.0  
+PyTorch (MPS / CUDA)  
+Ultralytics YOLO  
+OpenAI CLIP
+
+## Uruchomienie
+
+source .venv/bin/activate  
+pip install -r requirements.txt
+
+## Dokumentacja
+
+project_plan.yaml – główna specyfikacja projektu
+docs/ – dodatkowe materiały (pipeline, schematy, logika GLAM)

@@ -1,0 +1,80 @@
+project:
+  name: "Metadata Assistant – PRL / Brama Grodzka"
+  version: "0.1.0"
+  description: >
+    Pipeline do automatycznego uzupełniania metadanych obrazów (Dublin Core)
+    w archiwum Bramy Grodzkiej (dLibra). Projekt obejmuje klasyfikację PRL/non-PRL,
+    tagowanie obiektów, wykrywanie scen, OCR i generowanie sugestii AI z audytem.
+
+data:
+  structure:
+    raw: "data/raw/"
+    processed: "data/processed/"
+    harvest: "data/harvest/"
+    sample: "data/sample/"
+  policies:
+    committed: false
+    storage: "GCS europe-west4"
+    lifecycle: "Standard → Nearline po 30 dniach (planowane)"
+  metadata_standards:
+    - "Dublin Core"
+    - "OAI-PMH"
+    - "Europeana Data Model (EDM) – odniesienia"
+
+models:
+  clip:
+    version: "openai/clip-vit-base-patch32"
+    precision: "FP16"
+  yolo:
+    version: "ultralytics/yolov8n"
+    precision: "FP16"
+  ocr:
+    provider: "Google Vision API"
+  notes:
+    - "Konsekwentna precyzja FP16 między treningiem a inferencją."
+    - "Przechowywanie wag tylko lokalnie/GCS, nie w repozytorium."
+
+pipeline:
+  steps:
+    - harvest_metadata
+    - image_preprocessing
+    - scene_classification
+    - prl_classifier
+    - object_detection
+    - ocr_tiles
+    - ai_suggestions
+    - audit_logging
+    - export_dlibra_csv
+  outputs:
+    directory: "outputs/"
+    committed: false
+
+reproducibility:
+  seed: 42
+  environment:
+    python: "3.13"
+    requirements: "requirements.txt"
+    device_priority: ["mps", "cuda", "cpu"]
+  logs:
+    runlog: "logs/runlog.jsonl"
+
+audit:
+  manual_approval_required: true
+  policy: >
+    Każda sugestia AI (tagi, sceny, dekady, OCR) podlega ręcznej walidacji
+    i zapisowi decyzji w logs/audit/.
+
+deployment:
+  gcp:
+    bucket_data: "nonprl-harvest"
+    bucket_models: "nonprl-ml"
+    vertex_ai: false # planowane
+  local:
+    machine: "MacBook Air M2"
+    notes:
+      - "Aktywacja środowiska: source .venv/bin/activate"
+      - "Pillow w wersji 10.4.0 pod macOS ARM"
+
+notes:
+  - "Plik nie przechowuje danych operational, tylko definicję projektu."
+  - "Aktualizowany ręcznie po większych zmianach w pipeline."
