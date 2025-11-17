@@ -28,6 +28,7 @@ outputs/
 exports/
 logs/
 models/
+runs/
 
 #######################################
 # Wagi modeli / duże pliki
@@ -49,4 +50,4 @@ activate.sh
 #######################################
 .DS_Store
 .idea/
-*.code-workspace
+*.code-workspacew
