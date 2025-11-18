@@ -4,7 +4,7 @@ from pathlib import Path
 # ---- KONFIGURACJA ---------------------------------------------------------
 
 # Plik JSON z Label Studio
-LS_JSON = Path("data/yolo_syrena/ls_syrena_all.json")
+LS_JSON = Path("data/annotations/ls_merged.json")
 
 # Folder, do którego mają powstać etykiety YOLO
 OUT_LABELS = Path("data/yolo_syrena/labels/train")
