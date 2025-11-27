@@ -1,0 +1,8 @@
+# YOLOv8 data config for two classes: 0=maluch, 1=syrena
+
+train: /Users/olga/MetaLogic/data/yolo_cars/images/train
+val: /Users/olga/MetaLogic/data/yolo_cars/images/val
+
+names:
+  0: maluch
+  1: syrena
