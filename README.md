@@ -6,8 +6,6 @@ Asystent wspiera prace badawcze i eksperymentalne nad automatycznym wzbogacaniem
 
 Repozytorium ma strukturę modularną, rozdzielającą kod, dane, modele oraz wyniki analiz:
 
-## Struktura projektu
-
 - **src/**  
   Moduły źródłowe wykorzystywane przez notatniki i skrypty (m.in. obsługa CLIP, YOLO, OCR, słowników, spójności projektu).
 
