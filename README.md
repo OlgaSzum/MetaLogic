@@ -10,7 +10,7 @@ Repozytorium ma strukturę modularną, rozdzielającą kod, dane, modele oraz wy
   Moduły źródłowe wykorzystywane przez notatniki i skrypty (m.in. obsługa CLIP, YOLO, OCR, słowników, spójności projektu).
 
 - **scripts/**  
-  Skrypty narzędziowe uruchamiane poza notatnikami (detekcja obiektów, wyszukiwanie obrazów, konwersje danych, operacje pomocnicze).
+  Skrypty narzędziowe uruchamiane poza notatnikami (detekcja obiektów, przetwarzanie danych, operacje pomocnicze).
 
 - **notebooks/**  
   Notatniki Jupyter realizujące kolejne etapy pipeline’u (pozyskiwanie danych, analiza CLIP, detekcja obiektów, OCR, ewaluacja, wyszukiwanie wizualne i tekstowe, przegląd wyników oraz eksport do struktur zgodnych z Dublin Core).
