@@ -82,7 +82,7 @@ if indices.size > 0:
 
     print("\nFound Nearest Neighbors:")
     # Display basic info
-    cols = ['Distance', 'Similarity']
+    cols = ['Distance', 'Similarity']zz
     if CUTOUT_PATH_COLUMN in nearest_neighbors_df.columns:
         cols.append(CUTOUT_PATH_COLUMN)
     if 'Original Image Path' in nearest_neighbors_df.columns:
