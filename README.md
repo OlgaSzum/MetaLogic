@@ -48,7 +48,7 @@ Repozytorium ma strukturę modularną, rozdzielającą kod, dane, modele oraz wy
   Konfiguracje kluczy i dostępów (lokalne, nieprzeznaczone do wersjonowania).
 
 - **Pliki główne**  
-   `requirements.txt`, `Makefile`, `README.md`  
+   `README.md`, `requirements.txt`, `Makefile`,  
     *(requirements.txt – definicja zależności środowiskowych projektu; Makefile – pomocnicze komendy lokalne; dokumenty architektoniczne w `docs/`)*
 
 ## Modele i metody
