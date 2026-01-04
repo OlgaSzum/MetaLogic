@@ -76,5 +76,5 @@ deployment:
       - "Pillow w wersji 10.4.0 pod macOS ARM"
 
 notes:
-  - "Plik nie przechowuje danych operational, tylko definicję projektu."
-  - "Aktualizowany ręcznie po większych zmianach w pipeline."
+  - "Plik dokumentuje założenia architektoniczne, w tym reguły spójności pipeline’u i repozytorium."
+  - "Kontrola spójności realizowana jest przez konwencje projektowe i skrypty pomocnicze, nie przez autonomicznego agent."
