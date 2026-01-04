@@ -1,4 +1,4 @@
-# Metadata Assistant – PRL / Brama Grodzka
+# Asystent Metadanych – Brama Grodzka
 
 Asystent wspiera prace badawcze i eksperymentalne nad automatycznym wzbogacaniem metadanych dla zbiorów fotograficznych Bramy Grodzkiej – Teatru NN. Projekt ma charakter narzędziowo-badawczy i łączy analizę obrazu, wyszukiwanie wizualne oraz przygotowanie danych pomocniczych do ręcznej walidacji archiwalnej, zgodnie z zasadami GLAM (Dublin Core, OAI-PMH).
 
@@ -53,20 +53,20 @@ Repozytorium ma strukturę modularną, rozdzielającą kod, dane, modele oraz wy
 
 W projekcie wykorzystano wyłącznie modele wstępnie wytrenowane oraz rozwiązania eksperymentalne do porównań:
 
-- **Modele główne**
-	•	CLIP (OpenAI / OpenCLIP, FP16)
-	•	generowanie embeddingów wizualnych i tekstowych,
-	•	klasyfikacja zero-shot,
-	•	wyszukiwanie obrazów na podstawie podobieństwa wizualnego i zapytań tekstowych.
-	•	YOLOv8 (Ultralytics)
-	•	detekcja obiektów ogólnego przeznaczenia,
-	•	eksperymentalne testy modeli uczonych na ograniczonych zbiorach (np. „Syrena”, „Maluch”).
+- **Modele główne**  
+	•	CLIP (OpenAI / OpenCLIP, FP16)  
+	•	generowanie embeddingów wizualnych i tekstowych,  
+	•	klasyfikacja zero-shot,  
+	•	wyszukiwanie obrazów na podstawie podobieństwa wizualnego i zapytań tekstowych.  
+	•	YOLOv8 (Ultralytics)  
+	•	detekcja obiektów ogólnego przeznaczenia,  
+	•	eksperymentalne testy modeli uczonych na ograniczonych zbiorach (np. „Syrena”, „Maluch”).  
 
-- **Modele i podejścia porównawcze / eksperymentalne**
-	•	LVIS (open-vocabulary detection)
-	•	OWL-ViT
-	•	RT-DETR
-	•	GroundingDINO + SAM
+- **Modele i podejścia porównawcze / eksperymentalne**  
+	•	LVIS (open-vocabulary detection)  
+	•	OWL-ViT  
+	•	RT-DETR  
+	•	GroundingDINO + SAM  
 
 Używane wyłącznie do testów porównawczych i ewaluacyjnych, bez wdrożenia produkcyjnego.
 
@@ -77,7 +77,7 @@ Projekt nie obejmuje trenowania modeli na pełnych zbiorach archiwalnych ani roz
 
 Python 3.13  
 Pillow 10.4.0  
-PyTorch (CPU / MPS / CUDA – zależnie od środowiska)
+PyTorch (CPU / MPS / CUDA – zależnie od środowiska)  
 Ultralytics YOLO  
 OpenAI CLIP / OpenCLIP
 
